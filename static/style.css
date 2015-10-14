@@ -1,0 +1,98 @@
+.top {
+    box-sizing: border-box;
+    display: block;
+    font-family: 'Noto Sans',sans-serif;
+    font-size: 17px;
+    line-height: 25.5px;
+    padding: 20px 0 20px 0;
+    text-align: center;
+}
+
+.logo a {
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: 'Gotham Rounded A','Gotham Rounded B',sans-serif;
+    font-size: 61.2px;
+    font-style: normal;
+    /*font-weight: 500;*/
+    font-weight: bold;
+    line-height: 61.2px;
+    /*text-transform: uppercase;*/
+    color: black;
+    text-decoration: none;
+}
+
+html {
+    /*background-color: #eee;*/
+    background-image: url("background-body.png");
+    /*background-repeat: repeat-y;*/
+    font-family: sans;
+}
+div.center {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 800px;
+}
+
+div.left {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 800px;
+}
+
+pre {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+div.command {
+    display: block;
+    float: left;
+    min-width: 400px;
+    text-decoration: none;
+}
+
+div.info {
+    display: block;
+    float: left;
+    min-width: 140px;
+}
+
+div.flash-message {
+    background: #c2e2bb;
+    font: bold 14 Geneva;
+    color: #406b12;
+    font-weight: bold;
+    border: 1px solid grey;
+    border-left-color: #c9e1c5;
+    border-right-color: #c9e1c5;
+    margin: 0 -15px 15px -15px;
+    padding: 15px;
+}
+
+.enabled {
+    color: green;
+    text-decoration: none;
+}
+
+.disabled {
+    color: darkgrey;
+    text-decoration: none;
+}
+
+.crud-button {
+    color: black;
+    text-decoration: none;
+    float: right;
+    margin-left: 10px;
+}
+
+.log {
+    background: lightgrey;
+    border: 1px solid gray;
+}

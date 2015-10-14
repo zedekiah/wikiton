@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    {{ content|safe or "No content" }}
+{% endblock %}
+
+{% block left %}
+    <a href="{{ url_for('edit_page', lang=page.lang, path=page.path) }}">Edit</a>
+    <a href="{{ url_for('move_page', lang=page.lang, path=page.path) }}">Move</a>
+    <a href="{{ url_for('delete_page', lang=page.lang, path=page.path) }}">Delete</a>
+{% endblock %}

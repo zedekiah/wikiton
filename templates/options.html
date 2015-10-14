@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+    <ul>
+    {% for option in options %}
+        <li>{{ option.name }}: {{ option.value }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

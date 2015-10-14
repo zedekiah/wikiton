@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form action="{{ url_for('move_page', path=page.path) }}" method="post">
+        <div>Current path "{{ page.path }}"</div>
+        <div><label for="path">New path:</label></div>
+        <div><input id="path" name="path" type="text" value="{{ page.path }}"></div>
+        <div><input type="submit" value="Move"></div>
+    </form>
+{% endblock %}
