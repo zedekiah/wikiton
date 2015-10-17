@@ -96,3 +96,12 @@ div.flash-message {
     background: lightgrey;
     border: 1px solid gray;
 }
+
+textarea#content {
+    width: 100%;
+    min-height: 300px;
+}
+
+input#title {
+    width: 100%;
+}

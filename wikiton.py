@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     with closing(WikiDB()) as db:
-        page = db.get_main_page()
+        page = db.get_main_page(request.args.get('lang'))
         return redirect(url_for('show_page',
                                 lang=page['lang'],
                                 path=page['path']))
@@ -86,6 +86,14 @@ def move_page(path):
         else:  # POST
             db.move_page(page['id'], request.form['path'])
             return redirect(url_for('show_page', path=request.form['path']))
+
+
+@app.route('/<path:path>:default/')
+def make_main(path):
+    with closing(WikiDB()) as db:
+        db.set_option('main_page', path)
+    lang = request.args.get('lang') or db.get_option('default_lang')
+    return redirect(url_for('show_page', path=path, lang=lang))
 
 
 def main(init_db=False, insert_defaults=False, debug=False):

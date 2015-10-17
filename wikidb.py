@@ -66,11 +66,10 @@ class WikiDB(object):
         self.execute("DELETE FROM pages WHERE path = ?", (path, ))
 
     def get_main_page(self, lang=None):
-        page_path = self.get_option('main_page')
-        if page_path:
-            lang = lang or self.get_option('default_lang', 'en')
-            print page_path, lang
-            return self.get_page(page_path, lang)
+        page_path = self.get_option('main_page') or 'main'
+        lang = lang or self.get_option('default_lang', 'en')
+        p = self.get_page(page_path, lang) or {'path': page_path, 'lang': lang}
+        return p
 
     def get_option(self, name, default=None):
         c = self.query('SELECT value FROM options WHERE name = ?', (name, ))
@@ -80,3 +79,7 @@ class WikiDB(object):
     def get_options(self):
         c = self.query('SELECT name, value FROM options ORDER BY name')
         return [{'name': r[0], 'value': r[1]} for r in c]
+
+    def set_option(self, name, value):
+        self.execute('INSERT OR REPLACE INTO options (name, value) '
+                     'VALUES (?, ?)', (name, value))
