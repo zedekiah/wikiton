@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-.logo a {
+.logo {
     box-sizing: border-box;
     display: inline-block;
     font-family: 'Gotham Rounded A','Gotham Rounded B',sans-serif;
