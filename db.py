@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+from creole import creole2html
 from datetime import datetime
 from peewee import *
 
@@ -22,6 +23,10 @@ class Page(Model):
             lang = Option.get_value('default_lang', 'ru')
         path = Option.get_value('main_page', 'main')
         return cls.get(lang=lang, path=path)
+
+    @property
+    def content_html(self):
+        return creole2html(self.content)
 
 
 class PageHistory(Model):

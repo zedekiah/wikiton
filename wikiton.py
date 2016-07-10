@@ -1,7 +1,6 @@
 from flask import Flask, url_for, redirect, render_template, request, abort
 from db import Page, PageHistory, Option, DoesNotExist, db
 from argparse import ArgumentParser
-from creole import creole2html
 from os.path import basename
 
 
@@ -31,7 +30,7 @@ def show_page(lang, path=''):
         page = Page.get(Page.path == path, Page.lang == lang)
 
         return render_template('page.html', page=page, title=page.title,
-                               content=creole2html(page.content))
+                               content=page.content_html)
     except DoesNotExist as e:
         app.logger.debug('Page "%s" does not exist. %s', path, e.message)
         return redirect(url_for('edit_page', lang=lang, path=path))
