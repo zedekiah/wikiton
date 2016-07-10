@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 from sqlite3 import connect
+from time import time
 import json
 
 
@@ -29,8 +30,9 @@ class WikiDB(object):
         :param params:
         :return: None
         """
-        self.query(sql, params)
+        c = self.query(sql, params)
         self.conn.commit()
+        return c.lastrowid
 
     def execute_script(self, sql_script):
         self.conn.executescript(sql_script)
@@ -51,12 +53,24 @@ class WikiDB(object):
                     "content": page[4]}
 
     def add_page(self, lang, path, title, content):
-        self.execute("INSERT INTO pages (lang, path, title, content) "
-                     "VALUES (?, ?, ?, ?)", (lang, path, title, content))
+        page_id = self.execute(
+            "INSERT INTO pages (lang, path, title, content) "
+            "VALUES (?, ?, ?, ?)", (lang, path, title, content)
+        )
+        self.add_page_history(page_id, title, content)
+
+    def add_page_history(self, page_id, title, content):
+        self.execute(
+            "INSERT INTO page_history "
+            "(page_id, timestamp, title, content) "
+            "VALUES (?, ?, ?, ?)",
+            (page_id, int(time()), title, content)
+        )
 
     def update_page(self, page_id, title, content):
         self.execute("UPDATE pages SET title = ?, content = ? WHERE id = ?",
                      (title, content, page_id))
+        self.add_page_history(page_id, title, content)
 
     def move_page(self, page_id, new_path):
         self.execute("UPDATE pages SET path = ? WHERE id = ?",
