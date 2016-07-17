@@ -1,5 +1,5 @@
 {
   "db": {
-    "path": "data.sqlite"
+    "path": "data.db"
   }
 }

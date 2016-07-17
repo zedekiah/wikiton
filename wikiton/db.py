@@ -1,10 +1,11 @@
 # -*- coding: utf8 -*-
 from creole import creole2html
 from datetime import datetime
+from wikiton.app import app
 from peewee import *
 
 
-db = SqliteDatabase('data.db')
+db = SqliteDatabase(app.config['db']['path'])
 
 
 class Page(Model):

@@ -1,10 +1,8 @@
-from flask import Flask, url_for, redirect, render_template, request, abort
-from db import Page, PageHistory, Option, DoesNotExist, db
+from flask import url_for, redirect, render_template, request, abort
+from wikiton.db import db, Page, PageHistory, Option, DoesNotExist
 from argparse import ArgumentParser
 from os.path import basename
-
-
-app = Flask(__name__)
+from wikiton.app import app
 
 
 @app.route('/')
