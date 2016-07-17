@@ -5,4 +5,4 @@ import json
 
 app = Flask('Wikiton')
 with open('settings.json') as fd:
-    app.config.update(json.loads(fd))
+    app.config.update(json.load(fd))
